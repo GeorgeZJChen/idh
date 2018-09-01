@@ -11,7 +11,7 @@ class App extends Component {
     window.__App = this
   }
   render() {
-    const title='Deep Learning for Brain Tumour Detection with Experimental Segmentation'
+    const title='Machine Learning for in vivo gliomas IDH-mutation status prediction based on Multi-parametric MR Images'
     return (
       <div className="App">
         <Header title={title} ref='header'/>

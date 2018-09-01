@@ -8,6 +8,10 @@
   cursor: pointer;
   color: #069;
 }
+.cite.inline{
+  vertical-align: inherit;
+  font-size: 1em;
+}
 .ref-n{
   padding: 0.3rem 1.5rem 0.3rem 0.5rem;
   vertical-align: top;

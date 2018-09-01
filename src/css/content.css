@@ -35,7 +35,8 @@ p{
   vertical-align: top;
 }
 .math-block{
-  padding: 10px 15px;
+  display: block;
+  padding: 13px 15px;
   overflow: auto;
 }
 .math-block>.math:first-child{

@@ -19,7 +19,7 @@ class Cite extends Component {
   }
   render() {
     return (
-      <span className='cite' title={this.text} onClick={()=>this.goToRefs()}>
+      <span className={'cite '+(this.props.inline?'inline':'')} title={this.text} onClick={()=>this.goToRefs()}>
         [{this.n}]
       </span>
     )

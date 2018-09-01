@@ -16,5 +16,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://georgechenzj.github.io/brainmr1/"
+  "homepage": "https://georgezjchen.github.io/idh/"
 }

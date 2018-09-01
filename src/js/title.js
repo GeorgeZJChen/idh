@@ -11,7 +11,7 @@ class Title extends Component {
     this.SectionTitle = this.SectionTitle.bind(this)
     this.titles = []
     const date = new window.Date()
-    this.views = 16*(date.getDay()+1) + date.getHours() + 300
+    this.views = 16*(date.getDay()+1) + date.getHours() + 130
   }
   update(titles){
     this.titles = titles
@@ -23,7 +23,7 @@ class Title extends Component {
     window.open("https://georgezjchen.github.io/me/")
   }
   SectionTitle(props){
-    return <li onClick={()=>this.liOnClick(props.name)} className={props.type===1?'sec-tt':'sec-st'}
+    return <li onClick={()=>this.liOnClick(props.name)} className={'sec-t-'+props.level}
               >{props.name}</li>
   }
   liOnClick(to){
@@ -88,7 +88,7 @@ class Title extends Component {
               <div className='toc-ul-container'>
                 <ul className='toc-ul' ref='ul' style={{maxHeight: (document.documentElement.clientHeight?document.documentElement.clientHeight:document.body.clientHeight)*0.7}}>
                   {this.titles.map((item,index)=>{
-                    return <this.SectionTitle name={item.text} type={item.type} key={index}/>
+                    return <this.SectionTitle name={item.text} level={item.level} key={index}/>
                   })}
                 </ul>
               </div>

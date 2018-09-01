@@ -60,7 +60,7 @@ class Figure extends Component {
       <div className='figure-frame'
          style={{width:this.props.width}}>
         <div className='figure-container' style={{minHeight:120}}>
-          <img src={this.props.source} className='figure' alt={this.props.alt||this.props.caption.props.children}
+          <img src={this.props.source} className='figure' alt={this.props.alt||this.props.caption.props.children||''}
             style={{visibility: this.state.ready&&!this.state.error?'visible':'hidden'}} ref='image'
             onLoad={()=>this.setState({ready:1})} onError={()=>this.setState({error:1})}
             onDoubleClick={()=>this.viewFigure()} title='double click to open'
