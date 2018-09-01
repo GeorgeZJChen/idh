@@ -146,42 +146,44 @@ class Content extends Component {
         <this.Subtitle title='Convolutional neural network'/>
 
         <p>Neural network is commonly considered a very powerful learning algorithm today. Its design was originally inspired by the mechanism of the human brain which, in a simile way of saying, is also a machine, yet an organic and electrochemical one, made up of neurons and their connectomes. Basically, the mathematical foundation of neural network algorithms can be represented by matrices arithmetic. Matrices of weights \Theta weigh the connections between
-          layer <span className='math-inline'><MathJax math='l'/></span> and layer <span className='math-inline'><MathJax math='l+1'/></span>. Weighted values of each layer go through the activation function <span className='math-inline'><MathJax math='g(x)'/></span> before they partake in the next layer. The output of <span className='math-inline'><MathJax math='i^{th}'/></span> neuron in layer <span className='math-inline'><MathJax math='l+1'/></span> is
+          layer <span className='math-inline'><MathJax math='l'/></span> and layer <span className='math-inline'><MathJax math='l+1'/></span>. Weighted values of each layer go through the activation function <span className='math-inline'><MathJax math='g(x)'/></span> before they partake in the next layer. The output of <span className='math-inline'><MathJax math='i^{th}'/></span> neuron in layer <span className='math-inline'><MathJax math='l+1'/></span> is:</p>
           <span className='math-block'>
             <MathJax math='a_i^{l+1}= g\left(\sum_{j=0}^{n-1} \Theta_{ij}^{(l)} a_j^{(l)}\right)\tag{1}'/>
           </span>
-          For brevity, biases are not included in this equation.
+        <p>For brevity, biases are not included in this equation.
         </p>
         <p>Within the category of neural network there is convolution neural network (CNN) which has been proven to be greatly efficient in computer vision because of its parameter sharing and connection sparsity properties. Convolution operation computes the dot product between the input and the filter which is the weights corresponding to <span className='math-inline'><MathJax math='\Theta'/></span> in equation (1), but for convolution
           the weight matrices <span className='math-inline'><MathJax math='\Theta'/></span> are shared across all the neurons from the previous layer. Convolutional layers in CNN function as feature extractor, while fully connected layers (represented as equation (1)) connect all the features globally and finally make inferences. Gradient descend is used in neural networks to optimise weights and biases for the training data.</p>
 
         <this.Subtitle title='Batch normalisation'/>
-        <p>Batch normalisation <this.Cite name='7'/> is a terrific technique that have shown to be able to by many times speed up convergence of the model. This technique can neutralise the dissimilarity of distribution across layers, and thereby accelerates gradient. Batch normalisation can also improve prediction accuracy of image classification model, as specified in <this.Cite name='7' inline={1}/>. In short, it computes mean and variance of a mini batch and uses these two values to normalise the input of a layer batch-wise. When training, this statistic values were computed on a mini-batch; when testing, or in inference, it uses moving statistics to normalise the input. The mathematical base is as follow:
+        <p>Batch normalisation <this.Cite name='7'/> is a terrific technique that have shown to be able to by many times speed up convergence of the model. This technique can neutralise the dissimilarity of distribution across layers, and thereby accelerates gradient. Batch normalisation can also improve prediction accuracy of image classification model, as specified in <this.Cite name='7' inline={1}/>. In short, it computes mean and variance of a mini batch and uses these two values to normalise the input of a layer batch-wise. When training, this statistic values were computed on a mini-batch; when testing, or in inference, it uses moving statistics to normalise the input. The mathematical base is as follow:</p>
         <span className='math-block'>
           <MathJax math='\begin{split} & \mu=\frac{1}{m}\sum_{i=1}^mx_i \\ & \sigma=\frac{1}{m}\sum_{i=1}^m(x_i-\mu)^2 \\ & \widehat{x_i}=\frac{x_i-\mu}{\sqrt{\sigma^2+\epsilon}} \\ & y_i=\gamma\widehat{x_i}+\beta \end{split}'/>
         </span>
+        <p>
         , where <span className='math-inline'><MathJax math='x_i'/></span> is input value to batch normalisation layer and <span className='math-inline'><MathJax math='y_i'/></span> is the output of this layer, both <span className='math-inline'><MathJax math='\gamma'/></span> and <span className='math-inline'><MathJax math='\beta'/></span> being trainable variables. The motive of batch normalisation is to shift the data-flow space to central to zero where the activation function is changing most drastically so that the difference between two values can be interpreted greater to the next layer.</p>
 
         <this.Subtitle title='Regularisation'/>
         <p>Overfitting is a severe problem in high variance algorithms like neural networks. With massive parameters, neural networks can almost always find a way to fit the training data decently (if the model is designed in a sensible way), but at the expense of generalisation to other data. To reduce overfitting, regularisation techniques need to be applied.</p>
         <p>Dropout regularisation <this.Cite name='8'/> is usually applied to fully connected layers in which the connection between neurons are very dense and the parameters are preponderant compared to convolutional layers which make fully connected layers the ringleader of overfitting. Dropout regularisation blocks a portion of neurons each time. This reduces the reliance on particular features. On the other hand, since only the weights and biases of unblocked neurons can be trained each time, training will take longer when dropout is applied. But also, since many neurons are blocked, computation only happens in those still active neurons. This makes training of each data flow faster.</p>
-        <p>Moreover, L2 regularisation can penalise large weight values. This helps reduce the reliance of large weights and thus improve generalisation. L2 regularisation can be introduced in cross entropy loss function:
+        <p>Moreover, L2 regularisation can penalise large weight values. This helps reduce the reliance of large weights and thus improve generalisation. L2 regularisation can be introduced in cross entropy loss function:</p>
         <span className='math-block'>
           <MathJax math='J\left(\mathrm{\Theta}\right)=-\left[\frac{1}{m}\sum_{i=1}^{m}\left(y\prime^{\left(i\right)}\log{y^{\left(i\right)}}+\left(1-y\prime^{\left(i\right)}\right)\log {\left(1-y^{\left(i\right)}\right)}\right)\right]+\frac{\lambda}{2m}\sum_{j=1}^{n}\mathrm{\Theta}_j^2'/>
         </span>
+        <p>
         , where y^\prime is the ground truth label value, y is the predicted value and \lambda is the regularisation parameter.</p>
 
         <this.Subtitle title='Support vector machine'/>
         <p>Though many powerful modern machine learning algorithms have been developed today, support vector machine (SVM) has stood the test of time. SVM chooses landmarks from the training data and measures the similarity between a sample and the landmarks. By manually controlling the hyper-parameters, users can determine how SVM is to maximise its decision boundary between two classes.</p>
-        <p>Therefore, SVM is a highly controllable binary classifier. Its objective function can be described as: <this.Cite name='9'/>
+        <p>Therefore, SVM is a highly controllable binary classifier. Its objective function can be described as: <this.Cite name='9'/></p>
           <span className='math-block'>
             <MathJax math='J(\theta)\ =\ C\sum_{i=1}^{m}{\left[y^{(i)}{cost}_1\left(\theta^Tx^{(i)}\right)+\left(1-y^{(i)}\right){cost}_0\left(\theta^Tx^{(i)}\right)\right]+\frac{1}{2}\sum_{i=1}^{n}\theta_j^2}'/>
           </span>
-          , where <span className='math-inline'><MathJax math='C'/></span> is the regularisation parameter that trades off the width of decision boundary and the extent of misclassification. Another hyper-parameter (<span className='math-inline'><MathJax math='\gamma'/></span>) comes from the RBF (radial basis function) kernel also known as Gaussian kernel:
+        <p>, where <span className='math-inline'><MathJax math='C'/></span> is the regularisation parameter that trades off the width of decision boundary and the extent of misclassification. Another hyper-parameter (<span className='math-inline'><MathJax math='\gamma'/></span>) comes from the RBF (radial basis function) kernel also known as Gaussian kernel:</p>
           <span className='math-block'>
             <MathJax math="k\left(x,x\prime\right)=exp\left(-γ\|x-x\prime\|^2\right)"/>
           </span>
-          <span className='math-inline'><MathJax math='\gamma'/></span> is basically the reciprocal of variance in Gaussian function. It determines the measurement of similarity of feature <span className='math-inline'><MathJax math='x'/></span> to landmark <span className='math-inline'><MathJax math='x\prime'/></span>.
+        <p><span className='math-inline'><MathJax math='\gamma'/></span> is basically the reciprocal of variance in Gaussian function. It determines the measurement of similarity of feature <span className='math-inline'><MathJax math='x'/></span> to landmark <span className='math-inline'><MathJax math='x\prime'/></span>.
         </p>
 
         <this.Subtitle title='Nested leave-one-out cross validation'/>
@@ -225,11 +227,11 @@ class Content extends Component {
             <span>Network two. Three-dimensional neural network applying inception architecture. Seen here from left to right are (1) input layer, (2) convolution layer, (3) batch normalisation layer, (4) convolution layer, (5) batch normalisation layer, (6) convolutional pool module, (7) inception module, (8) batch normalisation layer, (9) convolutional pool module, (10) inception module, (11) batch normalisation layer, (12) & (13) fully connected layer, (14) dropout layer, (15) softmax layer, (16) output layer, where configuration of convolutional pool module is on the left-bottom and configuration of inception module is on the right-bottom.</span>
           } width={800}/>
         </div>
-        <p>Because the small size of input image, deeper neural networks do not help to extend receptive field of a neuron, but will produce more abstract features and become more difficult to train. For 3×3 convolution kernels and halving reduction layers (e.g. 2×2 with stride 2 max pooling layers), to compute receptive field of CNN, the following equation can be used:
+        <p>Because the small size of input image, deeper neural networks do not help to extend receptive field of a neuron, but will produce more abstract features and become more difficult to train. For 3×3 convolution kernels and halving reduction layers (e.g. 2×2 with stride 2 max pooling layers), to compute receptive field of CNN, the following equation can be used:</p>
           <span className='math-block'>
             <MathJax math="r=\sum_{n=1}^{k}{2^{n-1}l_n}"/>
           </span>
-          , where <span className='math-inline'><MathJax math='k'/></span> is the number of reduction layers and <span className='math-inline'><MathJax math='l'/></span> is the number of convolutional layers between <span className='math-inline'><MathJax math='n^{th}'/></span> and <span className='math-inline'><MathJax math='{(n+1)}^{th}'/></span> reduction layers,
+        <p>, where <span className='math-inline'><MathJax math='k'/></span> is the number of reduction layers and <span className='math-inline'><MathJax math='l'/></span> is the number of convolutional layers between <span className='math-inline'><MathJax math='n^{th}'/></span> and <span className='math-inline'><MathJax math='{(n+1)}^{th}'/></span> reduction layers,
            <span className='math-inline'><MathJax math='r'/></span> being the radius of the reduction field.
         </p>
         <p>If reception field is larger, the neurons detecting tumour region will be affected by more voxels outside the tumour region. This causes more undesirable boundary effect and affects the texture of the response tumour region. Therefore, the depths of the networks are designed conservatively in the experiments herein. On the other hand, in this case, the convergence was found faster when the implementation of batch normalisation was after the activation function, unlike the practice in the original paper or the practice in ResNet <this.Cite name='14'/> where this technique is massively used before activations.</p>
@@ -242,11 +244,11 @@ class Content extends Component {
 
         <this.Subtitle title='BraTS data pre-processing' level={3}/>
         <p>As alluded to above, to obtain learned filters from CNN, large quantity of data is required. BraTS2015 dataset provides brain MRI images which can be used in training the networks, so that ideally the parameters which constitute filters are trained to pick up features of the tumour texture to distinguish them from non-tumour texture.</p>
-        <p>Data from BraTS2015 were split into training, validation and test set. A programme to sample image patches took the three-dimension images as input and produced the equal number of patches for tumour and non-tumour tissue, having size of 28×28×14. Using ‘max-min’ normalisation:
+        <p>Data from BraTS2015 were split into training, validation and test set. A programme to sample image patches took the three-dimension images as input and produced the equal number of patches for tumour and non-tumour tissue, having size of 28×28×14. Using ‘max-min’ normalisation:</p>
           <span className='math-block'>
             <MathJax math="z_i=\frac{x_i-min(x)}{max(x)-min(x)}"/>
           </span>
-          , cubic patches were normalised and prepared for training. Overall, there were 6564 patches produced.
+        <p>, cubic patches were normalised and prepared for training. Overall, there were 6564 patches produced.
         </p>
 
         <this.Subtitle title='Implementation' level={3}/>
@@ -290,14 +292,15 @@ class Content extends Component {
         <p>For network 1 (VGG-like), there were 6 convolutional layers, so 6 layers of response images were obtained. For network 2, both ‘inception unit’ layers and ‘convolutional pooling’ layers were account for convolutional filters; there were still 6 layers. Response images of different layers produced first-order statistic values (mean, median, standard deviation, kurtosis, 5th and 95th percentile) by each layer alone or by concatenating with the prior layers. Lengths of feature vector increased quickly in the concatenation case. For the instance of network 2, the vector length of the last convolutional layer was 4512. Using equation (2) again, feature vectors were normalised dimension-wise.</p>
 
         <this.Subtitle title='Support vector machine classification' level={3}/>
-        <p>Feature vectors were then input to support vector machine. LIBSVM <this.Cite name='15'/> with RBF kernel was used, following the practice in <this.Cite name='Nature' inline={1}/>. LIBSVM is a popular opensource library for SVM and is stable and easy to use. In need of selecting SVM hyper-parameters as well as dealing with the limited number of samples, a nested leave-one-out cross validation (LOOCV) setting was used with the inner loop for parameter selection and the outer for model assessment. This ensure an unbiased estimation of the true error, though the amount of data is deficient. In addition, since training of SVM is very sensitive to class imbalance, positive class and negative class were weighted by
+        <p>Feature vectors were then input to support vector machine. LIBSVM <this.Cite name='15'/> with RBF kernel was used, following the practice in <this.Cite name='Nature' inline={1}/>. LIBSVM is a popular opensource library for SVM and is stable and easy to use. In need of selecting SVM hyper-parameters as well as dealing with the limited number of samples, a nested leave-one-out cross validation (LOOCV) setting was used with the inner loop for parameter selection and the outer for model assessment. This ensure an unbiased estimation of the true error, though the amount of data is deficient. In addition, since training of SVM is very sensitive to class imbalance, positive class and negative class were weighted by</p>
           <span className='math-block'>
             <MathJax math="C_p={\left(N^++N^-\right)}/{2N^+}\times\ C"/>
           </span>
-        , and
+        <p>, and</p>
           <span className='math-block'>
             <MathJax math="C_n={\left(N^++N^-\right)}/{2N^-\times C}"/>
           </span>
+        <p>
         respectively, where <span className='math-inline'><MathJax math='N^+'/></span> is the number of positive samples and <span className='math-inline'><MathJax math='N^-'/></span> is the number of negative samples.
         </p>
         <p>The optimal parameters (<span className='math-inline'><MathJax math='C, \gamma'/></span>) for SVM were found by grid search in inner loops. Each optimal parameter set corresponds to one inner loop and is applied to testing the left one in the outer loop. </p>
